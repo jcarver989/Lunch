@@ -1,0 +1,21 @@
+#header
+    %h1.title 
+        %small
+            Discover Something Tasty with...
+        What's for Lunch
+        
+    = image_tag "sandwhich.png", :id => "sandwhich"
+    
+    %p 
+        Use this app to discover places to enjoy a delicious lunch. It learns about your
+        preferences to help you get something to “hit the spot” every time..
+        
+    
+    
+    
+    - form_tag "/reccomend", :class => "location-form"  do |f|
+        = text_field :address, :zipcode, :value => "Zip Code Or Address"
+        <button class="button green"><span>nom, nom, nom</span></button>
+   
+   
+%hr.divider

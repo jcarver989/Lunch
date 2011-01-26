@@ -1,0 +1,17 @@
+
+.row { margin: 20px 0 0 0; }
+.row:after { display:block; content: "."; visibility: hidden; clear:both; height:0; }
+
+.column, .columns { float: left; margin: 0 0 0 20px; }
+
+.one    { width:100px; }
+.two    { width:200px; }
+.three  { width:300px; }
+.four   { width:400px; }
+.five   { width:500px; }
+.six    { width:600px; }
+.seven  { width:700px; }
+.eight  { width:800px; }
+.nine   { width:900px; }
+.ten    { width:1000px; }
+

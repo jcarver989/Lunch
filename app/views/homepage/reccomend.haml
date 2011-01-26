@@ -1,0 +1,55 @@
+.wrapper
+    = render :partial => 'menu'
+    
+    
+    .results
+        - @restaurants.in_groups_of(3) do |group|
+            .row
+                
+                - group.each do |r|
+                    - unless r.nil?
+                        .restaurant
+                            .header-info
+                                %h3
+                                    = r["name"].truncate(27)
+                                    
+                                    %small
+                                        = r["categories"].map {|c| c["name"] }.join(", ").truncate(35)
+                                        
+                                %h4
+                                    
+                                    = r["address1"] + " (" + r["distance"].to_i.to_s + "mi)"
+                                    
+                            
+                            %hr.divider
+                            
+                            .rating-bowl
+                                - if r['avg_rating'] > 4.5
+                                    = image_tag "bowl-green.png"
+                                - else
+                                    = image_tag "bowl-black.png"
+                                
+                                %p.rating
+                                    = r['avg_rating'].to_s
+                                    %small
+                                        = "/5"
+                            
+                            .buttons
+                                - form_for TrainingExample.new  do |f|
+                                    = f.hidden_field :restaurant_name,  :value => r['name']
+                                    = f.hidden_field :restaurant_type, :value => r['categories'][0]
+                                    = f.hidden_field :yelp_rating, :value => r['avg_rating']
+                                    = f.hidden_field :distance, :value => r['distance']
+                                    = f.hidden_field :ate_lunch, :value => true
+                                    
+                                    <button class="green button"><span>Yes!</span></button>
+                                
+                                - form_for TrainingExample.new  do |f|
+                                    = f.hidden_field :restaurant_name,  :value => r['name']
+                                    = f.hidden_field :restaurant_type, :value => r['categories'][0]
+                                    = f.hidden_field :yelp_rating, :value => r['avg_rating']
+                                    = f.hidden_field :distance, :value => r['distance']
+                                    = f.hidden_field :ate_lunch, :value => false
+                                    
+                                    <button class="red button"><span>Hell No</span></button>
+                                    
